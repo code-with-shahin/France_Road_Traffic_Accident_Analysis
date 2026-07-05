@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="258664b4-2f5f-4d13-b134-815a1733bde3" name="Changes" comment="summary tables">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
-    </list>
+    <list default="true" id="258664b4-2f5f-4d13-b134-815a1733bde3" name="Changes" comment="data cleaning" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,6 +15,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -37,23 +35,23 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0631003629916143" />
-      <entry key="MS500" value="1.8571564155690097" />
-      <entry key="S2" value="2.6004213254193154" />
-      <entry key="S5" value="2.8286468115341203" />
-      <entry key="S10" value="2.9538619305182627" />
-      <entry key="S30" value="3.52273405741016" />
-      <entry key="S60" value="4.036617317764609" />
-      <entry key="M2" value="4.4843546764023365" />
-      <entry key="M5" value="5.620925552640365" />
-      <entry key="M10" value="7.965508713787602" />
-      <entry key="M15" value="10.611050682639608" />
-      <entry key="M30" value="18.936177958920112" />
-      <entry key="H1" value="33.57112350818987" />
-      <entry key="H2" value="51.11670314422338" />
-      <entry key="H4" value="65.7367416038665" />
-      <entry key="D1" value="82.86481798683113" />
-      <entry key="W1" value="86.39268001283988" />
+      <entry key="MS100" value="1.00040495671843" />
+      <entry key="MS500" value="1.2370739772855304" />
+      <entry key="S2" value="2.083630179423068" />
+      <entry key="S5" value="2.5533099693187493" />
+      <entry key="S10" value="2.7602908836413507" />
+      <entry key="S30" value="2.9217833542036917" />
+      <entry key="S60" value="3.119343764174566" />
+      <entry key="M2" value="3.876445340159593" />
+      <entry key="M5" value="5.945358211463426" />
+      <entry key="M10" value="8.770148505215072" />
+      <entry key="M15" value="11.560072995762122" />
+      <entry key="M30" value="20.009358016433374" />
+      <entry key="H1" value="34.817948997147205" />
+      <entry key="H2" value="52.76428296229411" />
+      <entry key="H4" value="67.8613516671357" />
+      <entry key="D1" value="85.67988439765008" />
+      <entry key="W1" value="89.3651099793535" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -75,23 +73,23 @@
       <entry key="W1" value="0.0" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.8369922484800579" />
-      <entry key="MS500" value="1.7809829239992039" />
-      <entry key="S2" value="2.575216943512719" />
-      <entry key="S5" value="2.8178274344614316" />
-      <entry key="S10" value="2.9482290533344737" />
-      <entry key="S30" value="3.520459908667671" />
-      <entry key="S60" value="4.035297567513914" />
-      <entry key="M2" value="4.483615045669276" />
-      <entry key="M5" value="5.620548488026215" />
-      <entry key="M10" value="7.965227558392664" />
-      <entry key="M15" value="10.610777560498217" />
-      <entry key="M30" value="18.935843038798406" />
-      <entry key="H1" value="33.57071502996434" />
-      <entry key="H2" value="51.11633351695585" />
-      <entry key="H4" value="65.73648401526303" />
-      <entry key="D1" value="82.86476041641917" />
-      <entry key="W1" value="86.39267135167519" />
+      <entry key="MS100" value="0.9016362395646382" />
+      <entry key="MS500" value="1.214129602469484" />
+      <entry key="S2" value="2.075538037836151" />
+      <entry key="S5" value="2.5495327791244806" />
+      <entry key="S10" value="2.7582820601636935" />
+      <entry key="S30" value="2.92107979533982" />
+      <entry key="S60" value="3.118936877043367" />
+      <entry key="M2" value="3.8761192381763685" />
+      <entry key="M5" value="5.945088596814549" />
+      <entry key="M10" value="8.769908916301505" />
+      <entry key="M15" value="11.559828734412575" />
+      <entry key="M30" value="20.009045217351705" />
+      <entry key="H1" value="34.81755587443639" />
+      <entry key="H2" value="52.76392012775743" />
+      <entry key="H4" value="67.86109601591593" />
+      <entry key="D1" value="85.67982670700354" />
+      <entry key="W1" value="89.36510128542406" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -171,7 +169,15 @@
       <option name="project" value="LOCAL" />
       <updated>1783111576098</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="data cleaning">
+      <option name="closed" value="true" />
+      <created>1783291786975</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1783291786975</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -181,7 +187,8 @@
     <MESSAGE value="uploading data" />
     <MESSAGE value="appending datasets" />
     <MESSAGE value="summary tables" />
-    <option name="LAST_COMMIT_MESSAGE" value="summary tables" />
+    <MESSAGE value="data cleaning" />
+    <option name="LAST_COMMIT_MESSAGE" value="data cleaning" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
