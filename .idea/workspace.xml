@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="258664b4-2f5f-4d13-b134-815a1733bde3" name="Changes" comment="appending datasets">
+    <list default="true" id="258664b4-2f5f-4d13-b134-815a1733bde3" name="Changes" comment="summary tables">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -37,23 +37,23 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.0000414002840616" />
-      <entry key="MS500" value="1.138463346982381" />
-      <entry key="S2" value="1.877313721058433" />
-      <entry key="S5" value="2.4126504542885447" />
-      <entry key="S10" value="2.6756436998995827" />
-      <entry key="S30" value="2.904576217214257" />
-      <entry key="S60" value="3.3074911564454896" />
-      <entry key="M2" value="4.7699875538056205" />
-      <entry key="M5" value="9.345262743789773" />
-      <entry key="M10" value="15.232443160982621" />
-      <entry key="M15" value="19.62789617112195" />
-      <entry key="M30" value="28.384108110554518" />
-      <entry key="H1" value="36.926984675484654" />
-      <entry key="H2" value="43.334067026033715" />
-      <entry key="H4" value="47.33103773532409" />
-      <entry key="D1" value="51.16971550806332" />
-      <entry key="W1" value="51.88003314187201" />
+      <entry key="MS100" value="1.0631003629916143" />
+      <entry key="MS500" value="1.8571564155690097" />
+      <entry key="S2" value="2.6004213254193154" />
+      <entry key="S5" value="2.8286468115341203" />
+      <entry key="S10" value="2.9538619305182627" />
+      <entry key="S30" value="3.52273405741016" />
+      <entry key="S60" value="4.036617317764609" />
+      <entry key="M2" value="4.4843546764023365" />
+      <entry key="M5" value="5.620925552640365" />
+      <entry key="M10" value="7.965508713787602" />
+      <entry key="M15" value="10.611050682639608" />
+      <entry key="M30" value="18.936177958920112" />
+      <entry key="H1" value="33.57112350818987" />
+      <entry key="H2" value="51.11670314422338" />
+      <entry key="H4" value="65.7367416038665" />
+      <entry key="D1" value="82.86481798683113" />
+      <entry key="W1" value="86.39268001283988" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -75,23 +75,23 @@
       <entry key="W1" value="0.0" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="0.7219982252407169" />
-      <entry key="MS500" value="1.0696264979054877" />
-      <entry key="S2" value="1.8505851854203859" />
-      <entry key="S5" value="2.398979439285653" />
-      <entry key="S10" value="2.6680569010855297" />
-      <entry key="S30" value="2.90182817958805" />
-      <entry key="S60" value="3.305700374913944" />
-      <entry key="M2" value="4.767595477252921" />
-      <entry key="M5" value="9.342339534456766" />
-      <entry key="M10" value="15.230089199628184" />
-      <entry key="M15" value="19.625954450153223" />
-      <entry key="M30" value="28.38277529369441" />
-      <entry key="H1" value="36.92613544447513" />
-      <entry key="H2" value="43.333571500056195" />
-      <entry key="H4" value="47.33076740202897" />
-      <entry key="D1" value="51.16966679086563" />
-      <entry key="W1" value="51.88002608477431" />
+      <entry key="MS100" value="0.8369922484800579" />
+      <entry key="MS500" value="1.7809829239992039" />
+      <entry key="S2" value="2.575216943512719" />
+      <entry key="S5" value="2.8178274344614316" />
+      <entry key="S10" value="2.9482290533344737" />
+      <entry key="S30" value="3.520459908667671" />
+      <entry key="S60" value="4.035297567513914" />
+      <entry key="M2" value="4.483615045669276" />
+      <entry key="M5" value="5.620548488026215" />
+      <entry key="M10" value="7.965227558392664" />
+      <entry key="M15" value="10.610777560498217" />
+      <entry key="M30" value="18.935843038798406" />
+      <entry key="H1" value="33.57071502996434" />
+      <entry key="H2" value="51.11633351695585" />
+      <entry key="H4" value="65.73648401526303" />
+      <entry key="D1" value="82.86476041641917" />
+      <entry key="W1" value="86.39267135167519" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -120,13 +120,14 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
     &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
   }
 }</component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-245168a56dbd-c2ffad84badb-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-261.25134.203" />
+        <option value="bundled-python-sdk-50341a9f1f9c-c2ffad84badb-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-261.26222.68" />
       </set>
     </attachedChunks>
   </component>
@@ -154,7 +155,23 @@
       <option name="project" value="LOCAL" />
       <updated>1783107443427</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="summary tables">
+      <option name="closed" value="true" />
+      <created>1783111495347</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1783111495347</updated>
+    </task>
+    <task id="LOCAL-00004" summary="summary tables">
+      <option name="closed" value="true" />
+      <created>1783111576098</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1783111576098</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -163,7 +180,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="uploading data" />
     <MESSAGE value="appending datasets" />
-    <option name="LAST_COMMIT_MESSAGE" value="appending datasets" />
+    <MESSAGE value="summary tables" />
+    <option name="LAST_COMMIT_MESSAGE" value="summary tables" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

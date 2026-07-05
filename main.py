@@ -137,7 +137,7 @@ os.makedirs(output_path, exist_ok=True)
 # 1. Save CHARACTERISTICS
 
 characteristics.to_csv(
-    os.path.join(output_path, "characteristics_2020_2024.csv"),
+    os.path.join(output_path, "characteristics.csv"),
     sep=";",
     index=False,
     encoding="utf-8"
@@ -146,7 +146,7 @@ characteristics.to_csv(
 # 2. Save LOCATIONS
 
 locations.to_csv(
-    os.path.join(output_path, "locations_2020_2024.csv"),
+    os.path.join(output_path, "locations.csv"),
     sep=";",
     index=False,
     encoding="utf-8"
@@ -155,7 +155,7 @@ locations.to_csv(
 # 3. Save VEHICLES
 
 vehicles.to_csv(
-    os.path.join(output_path, "vehicles_2020_2024.csv"),
+    os.path.join(output_path, "vehicles.csv"),
     sep=";",
     index=False,
     encoding="utf-8"
@@ -164,7 +164,7 @@ vehicles.to_csv(
 # 4. Save USERS
 
 users.to_csv(
-    os.path.join(output_path, "users_2020_2024.csv"),
+    os.path.join(output_path, "users.csv"),
     sep=";",
     index=False,
     encoding="utf-8"
@@ -182,22 +182,22 @@ import os
 processed_path = r"D:\PycharmProjects\Paris_Road_Traffic_Analysis\datasets\processed"
 
 characteristics = pd.read_csv(
-    os.path.join(processed_path, "characteristics_2020_2024.csv"),
+    os.path.join(processed_path, "characteristics.csv"),
     sep=";"
 )
 
 locations = pd.read_csv(
-    os.path.join(processed_path, "locations_2020_2024.csv"),
+    os.path.join(processed_path, "locations.csv"),
     sep=";"
 )
 
 vehicles = pd.read_csv(
-    os.path.join(processed_path, "vehicles_2020_2024.csv"),
+    os.path.join(processed_path, "vehicles.csv"),
     sep=";"
 )
 
 users = pd.read_csv(
-    os.path.join(processed_path, "users_2020_2024.csv"),
+    os.path.join(processed_path, "users.csv"),
     sep=";"
 )
 
@@ -235,4 +235,123 @@ print("Characteristics shape:", characteristics.shape)
 print("Locations shape:", locations.shape)
 print("Vehicles shape:", vehicles.shape)
 print("Users shape:", users.shape)
+
+
+# ------------------------------------------------------------------------------------------
+# STEP 4. Data Cleaning
+# ------------------------------------------------------------------------------------------
+
+# 1. Rename the columns for all datasets:
+
+characteristics = characteristics.rename(columns={
+    'Num_Acc': 'accident_id',
+    'jour': 'accident_day',
+    'mois': 'accident_month',
+    'an': 'accident_year',
+    'hrmn': 'accident_time',
+    'lum': 'lighting_conditions',
+    'dep': 'department_id',
+    'com': 'municipality_id',
+    'agg': 'location',
+    'int': 'intersection',
+    'atm': 'atmospheric_conditions',
+    'col': 'collision_type',
+    'adr': 'address',
+    'lat': 'latitude',
+    'long': 'longitude'
+})
+
+locations = locations.rename(columns={
+    'Num_Acc': 'accident_id',
+    'catr': 'road_category',
+    'voie': 'road_number',
+    'v1': 'road_number_index',
+    'v2': 'road_alphanumeric_index',
+    'circ': 'traffic_regime',
+    'nbv': 'number_of_traffic_lanes',
+    'vosp': 'reserved_lane_type',
+    'prof': 'road_profile',
+    'pr': 'upstream_terminal_number',
+    'pr1': 'distance_to_upstream_terminal',
+    'plan': 'plan_layout',
+    'lartpc': 'central_reservation_width',
+    'larrout': 'carriageway_width',
+    'surf': 'surface_condition',
+    'infra': 'infrastructure',
+    'situ': 'accident_location',
+    'vma': 'max_speed_permitted'
+})
+
+vehicles = vehicles.rename(columns={
+    'Num_Acc': 'accident_id',
+    'id_vehicle': 'vehicle_id',
+    'Num_Veh': 'vehicle_code',
+    'senc': 'travel_direction',
+    'catv': 'vehicle_category',
+    'obs': 'fixed_obstacle_struck',
+    'obsm': 'mobile_obstacle_struck',
+    'choc': 'initial_impact_point',
+    'manv': 'main_manoeuvre_before_the_accident',
+    'motor': 'vehicle_engine_type',
+    'occutc': 'occupants_in_public_transport'
+})
+
+users = users.rename(columns={
+    'Num_Acc': 'accident_id',
+    'id_usager': 'user_id',
+    'id_vehicle': 'vehicle_id',
+    'num_veh': 'vehicle_code',
+    'place': 'seat_place',
+    'catu': 'user_category',
+    'grav': 'injury_severity',
+    'sexe': 'gender',
+    'An_nais': 'birth_year_user',
+    'trajet': 'travel_reason',
+    'secu1': 'safety_equipment1',
+    'secu2': 'safety_equipment2',
+    'secu3': 'safety_equipment3',
+    'locp': 'pedestrian_location',
+    'actp': 'pedestrian_action',
+    'etatp': 'pedestrian_presence'
+})
+
+# Drop "year" column from all datasets
+
+characteristics = characteristics.drop(columns=['year'])
+locations = locations.drop(columns=['year'])
+vehicles = vehicles.drop(columns=['year'])
+users = users.drop(columns=['year'])
+
+# Check the column names:
+
+print("Characteristics columns:", characteristics.columns.tolist())
+print("Locations columns:", locations.columns.tolist())
+print("Vehicles columns:", vehicles.columns.tolist())
+print("Users columns:", users.columns.tolist())
+
+# 2. Update Data Format and Replace Numeric Codes with Labels
+
+# 2.1 "Characteristics" Table
+
+# Mapping dictionary
+lighting_map = {
+    '1': 'Broad daylight',
+    '2': 'Dusk or dawn',
+    '3': 'Night without street lighting',
+    '4': 'Night with street lighting off',
+    '5': 'Night with street lighting on'
+}
+
+# Ensure the column is treated as string before mapping (in case it's read as int/float)
+characteristics['lighting_conditions'] = (
+    characteristics['lighting_conditions']
+    .astype(str)
+    .str.strip()          # remove any stray whitespace
+    .str.split('.').str[0]  # handles cases where it was read as float, e.g. '1.0' -> '1'
+    .map(lighting_map)
+    .fillna('Unknown')
+    .astype('category')
+)
+
+print(characteristics['lighting_conditions'].value_counts(dropna=False))
 
