@@ -4,7 +4,6 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
-import os
 
 # ---------------------------------------------------------------------------------------------
 # STEP 1. Import and Append Datasets
@@ -197,7 +196,7 @@ vehicles = vehicles.rename(columns={
 users = users.rename(columns={
     'Num_Acc': 'accident_id',
     'id_usager': 'user_id',
-    'id_vehicle': 'vehicle_id',
+    'id_vehicule': 'vehicle_id',
     'num_veh': 'vehicle_code',
     'place': 'seat_place',
     'catu': 'user_category',
@@ -212,9 +211,6 @@ users = users.rename(columns={
     'actp': 'pedestrian_action',
     'etatp': 'pedestrian_presence'
 })
-
-# Convert to a proper year format, keeping NaN as NaN (can't force int if missing values exist)
-users['birth_year_user'] = users['birth_year_user'].astype('Int64')  # capital "I" = pandas nullable integer type
 
 # Check the column names:
 
@@ -879,41 +875,14 @@ users['pedestrian_presence'] = (
     .fillna('Unknown')
     .astype('category')
 )
-
-
-# Stop pandas from truncating/wrapping columns in the console output:
-
-pd.set_option('display.max_columns', None)
-pd.set_option('display.width', 0)      # 0 tells pandas to detect terminal width, but often works better than None for wrapping issues
-pd.set_option('display.expand_frame_repr', False)  # this is the key one — stops line wrapping entirely
-
-
-# Verify the dataframes
-
-print("=== characteristics ===")
-print(characteristics.head(5))
-
-print("\n=== locations ===")
-print(locations.head(5))
-
-print("\n=== users ===")
-print(users.head(5))
-
-print("\n=== vehicles ===")
-print(vehicles.head(5))
+# Set the correct birth year data type
+users["birth_year_user"] = users["birth_year_user"].astype("Int64")
 
 # 3. Drop redundant columns
-
-# Drop "year" column from all datasets
-characteristics = characteristics.drop(columns=['year'])
-locations = locations.drop(columns=['year'])
-vehicles = vehicles.drop(columns=['year'])
-users = users.drop(columns=['year'])
-
-# Drop unnecessary columns
-locations = locations.drop(columns=['road_number_index', 'road_alphanumeric_index', 'central_reservation_width'])
-vehicles = vehicles.drop(columns=['occupants_in_public_transport'])
-
+characteristics = characteristics.drop(columns=['address', 'year'])
+locations = locations.drop(columns=['infrastructure', 'carriageway_width', 'reserved_lane_type', 'upstream_terminal_number', 'distance_to_upstream_terminal', 'road_number_index', 'road_alphanumeric_index', 'central_reservation_width', 'year'])
+vehicles = vehicles.drop(columns=['travel_direction', 'vehicle_engine_type', 'vehicle_code', 'occupants_in_public_transport', 'year'])
+users = users.drop(columns=['vehicle_code', 'seat_place', 'year'])
 
 # ------------------------------------------------------------------------------------------
 # STEP 3. Save all appended tables
@@ -993,12 +962,16 @@ users = pd.read_csv(
 
 # Summary Tables for each dataset
 
+# Display all columns and increase output width
+pd.set_option("display.max_columns", None)
+pd.set_option("display.width", 200)
+
 def create_summary(df):
     summary = pd.DataFrame({
         "Column Name": df.columns,
         "Data Type": df.dtypes.values,
         "Missing Values": df.isnull().sum().values,
-        "Missing %": df.isnull().mean().values * 100,
+        "Missing %": (df.isnull().mean().values * 100).round(2),
         "Unique Values": df.nunique().values
     })
     return summary
@@ -1025,3 +998,24 @@ print("Characteristics shape:", characteristics.shape)
 print("Locations shape:", locations.shape)
 print("Vehicles shape:", vehicles.shape)
 print("Users shape:", users.shape)
+
+# Stop pandas from truncating/wrapping columns in the console output:
+
+pd.set_option('display.max_columns', None)
+pd.set_option('display.width', 0)      # 0 tells pandas to detect terminal width, but often works better than None for wrapping issues
+pd.set_option('display.expand_frame_repr', False)  # this is the key one — stops line wrapping entirely
+
+# Verify the dataframes
+
+print("=== characteristics ===")
+print(characteristics.head(5))
+
+print("\n=== locations ===")
+print(locations.head(5))
+
+print("\n=== users ===")
+print(users.head(5))
+
+print("\n=== vehicles ===")
+print(vehicles.head(5))
+
