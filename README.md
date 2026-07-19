@@ -161,7 +161,7 @@ Data preprocessing included:
 ```
 France_Road_Traffic_Accident_Analysis/
 │
-├── Data/
+├── Datasets/
 │   ├── Raw Data
 │   └── Clean Data
 │
