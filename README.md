@@ -327,7 +327,8 @@ Potential future enhancements include:
 
 ## Geographic Analysis
 
-![Map Analysis](images/map_analysis.png)
+<img width="1443" height="799" alt="geographical_analysis" src="https://github.com/user-attachments/assets/be0892e7-9367-4a88-8fda-e2f12fb6af84" />
+
 
 ---
 
