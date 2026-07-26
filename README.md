@@ -1,4 +1,4 @@
-# 🇫🇷 France Road Traffic Accident Analysis (2021–2024)
+# France Road Traffic Accident Analysis (2021–2024)
 
 ![Power BI](https://img.shields.io/badge/Power%20BI-Dashboard-yellow)
 ![Python](https://img.shields.io/badge/Python-Data%20Preparation-blue)
@@ -7,7 +7,7 @@
 
 An end-to-end data analytics project that analyzes **road traffic accidents resulting in personal injury in France between 2021 and 2024**. The project transforms raw government accident data into an interactive **Power BI dashboard** to uncover accident trends, identify high-risk groups, evaluate environmental factors, and support data-driven road safety decisions.
 
-The project follows modern analytics best practices, including **data cleaning, dimensional modeling, Power Query transformations, DAX calculations, and interactive dashboard design**.
+The project follows modern analytics best practices, including **data cleaning, dimensional modelling, Power Query transformations, DAX calculations, and interactive dashboard design**.
 
 ---
 
@@ -230,7 +230,7 @@ The analysis revealed several important patterns:
 
 - Accident frequency fluctuates throughout the year, with clear seasonal trends.
 - Poor lighting conditions are associated with a higher proportion of severe accidents.
-- Young drivers and road users account for a significant share of reported accidents.
+- Young drivers (20-25 year-olds) and road users account for a significant share of reported accidents.
 - Urban areas experience considerably higher accident volumes than rural regions.
 - Weather conditions influence both accident frequency and injury severity.
 - Geographic analysis highlights departments with consistently higher accident concentrations, helping identify potential road safety hotspots.
