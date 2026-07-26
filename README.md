@@ -235,7 +235,7 @@ The analysis revealed several important patterns:
 - Weather conditions influence both accident frequency and injury severity.
 - Geographic analysis highlights departments with consistently higher accident concentrations, helping identify potential road safety hotspots.
 
-The dashboard enables stakeholders to quickly identify:
+The dashboard enables the audience to quickly identify:
 
 - High-risk demographic groups
 - Accident hotspots
@@ -253,7 +253,7 @@ The dashboard enables stakeholders to quickly identify:
 - Python
 - SQL
 - Microsoft Excel
-- Data Modeling
+- Data Modelling
 - Star Schema
 
 ---
@@ -307,7 +307,7 @@ Potential future enhancements include:
 - Implement accident forecasting models
 - Perform GIS-based hotspot analysis
 - Develop a real-time monitoring dashboard
-- Add advanced drill-through reports and mobile-optimized layouts
+- Add advanced drill-through reports and mobile-optimised layouts
 
 ---
 
@@ -316,6 +316,12 @@ Potential future enhancements include:
 ## Executive Dashboard
 
 <img width="1364" height="789" alt="2026-07-20 22_54_23-France" src="https://github.com/user-attachments/assets/555e1477-7979-4287-832a-af0fa4ec27d1" />
+
+---
+
+## Temporal Analysis
+
+<img width="1442" height="800" alt="tempo" src="https://github.com/user-attachments/assets/820f4091-6a0e-48bd-b7ca-98f9a8ed2b80" />
 
 ---
 
