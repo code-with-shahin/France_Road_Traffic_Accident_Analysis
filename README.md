@@ -260,14 +260,17 @@ France_Road_Traffic_Accident_Analysis/
 │
 ├── Images/
 │   ├── dashboard_overview.png
-│   ├── accident_trends.png
-│   └── map_analysis.png
+│   ├── temporal_analysis.png
+│   ├── users_analysis.png
+│   └── geographical_analysis.png
+│
+├── SQL/
+│   └── France_SQL.sql
 │
 ├── PowerBI/
 │   └── France.pbix
 │
-├── README.md
-└── LICENSE
+└── README.md
 ```
 
 ---
