@@ -149,61 +149,35 @@ The dashboard provides multiple analytical views.
 
 - Total accidents
 - Total road users involved
-- Total vehicles involved
 - Fatal accidents
 - Serious injuries
 
 ---
 
-## Time Analysis
+## Temporal Analysis
 
 - Accidents by Year
 - Monthly accident trends
 - Seasonal patterns
-- Year-over-Year comparisons
+- Lighting and Atmospheric conditions
 
 ---
 
-## Demographic Analysis
+## Users Analysis
 
 - Age distribution
 - Gender distribution
 - User categories
-- Travel purpose
+- Safety equipment usage
 
 ---
 
-## Environmental Analysis
-
-- Weather conditions
-- Lighting conditions
-- Road surface conditions
-
----
-
-## Road Analysis
+## Geographical Analysis
 
 - Road category
 - Speed limit
-- Number of traffic lanes
-- Road profile
-
----
-
-## Injury Analysis
-
-- Injury severity
-- Fatal accidents
-- Serious injuries
-- Minor injuries
-
----
-
-## Geographic Analysis
-
-- Department-level analysis
+- Road surface conditions
 - Interactive accident map
-- Latitude & Longitude visualization
 
 ---
 
