@@ -319,16 +319,15 @@ Potential future enhancements include:
 
 ---
 
-## Accident Trends
+## User Analysis
 
-![Accident Trends](images/accident_trends.png)
+<img width="1444" height="800" alt="user" src="https://github.com/user-attachments/assets/52f25b84-83dc-4b9f-a30a-ea5d7ef399cf" />
 
 ---
 
 ## Geographic Analysis
 
 <img width="1444" height="798" alt="geo" src="https://github.com/user-attachments/assets/e3c09165-4d5d-463f-b8b6-1faecd81978e" />
-
 
 ---
 
