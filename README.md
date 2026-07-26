@@ -1,37 +1,70 @@
-# France Road Traffic Accident Analysis (2021–2024)
+# 🇫🇷 France Road Traffic Accident Analysis (2021–2024)
 
-## 📌 Project Overview
+![Power BI](https://img.shields.io/badge/Power%20BI-Dashboard-yellow)
+![Python](https://img.shields.io/badge/Python-Data%20Preparation-blue)
+![SQL](https://img.shields.io/badge/SQL-Data%20Modeling-blue)
+![Status](https://img.shields.io/badge/Status-Completed-success)
 
-This project analyses road traffic accidents resulting in personal injury in France between **2021 and 2024** using **Microsoft Power BI**. The goal is to transform raw accident data into an interactive dashboard that helps identify accident trends, high-risk groups, environmental factors, and geographical patterns.
+An end-to-end data analytics project that analyzes **road traffic accidents resulting in personal injury in France between 2021 and 2024**. The project transforms raw government accident data into an interactive **Power BI dashboard** to uncover accident trends, identify high-risk groups, evaluate environmental factors, and support data-driven road safety decisions.
 
-The project follows data analytics best practices, including data cleaning, dimensional modelling, DAX calculations, and interactive dashboard design.
-
----
-
-## 🎯 Project Objectives
-
-- Analyse accident trends over time
-- Identify high-risk demographics
-- Examine the influence of weather and lighting conditions
-- Investigate accident severity
-- Explore geographic distribution of accidents
-- Build an efficient star schema data model
-- Create interactive dashboards for business users
+The project follows modern analytics best practices, including **data cleaning, dimensional modeling, Power Query transformations, DAX calculations, and interactive dashboard design**.
 
 ---
 
-## 📊 Dataset
+# Table of Contents
 
-The project uses the official French road traffic accident datasets containing personal injury accidents.
+- [Project Overview](#project-overview)
+- [Project Objectives](#project-objectives)
+- [Dataset](#dataset)
+- [Data Model](#data-model)
+- [Project Workflow](#project-workflow)
+- [Dashboard Features](#dashboard-features)
+- [Key Performance Indicators](#key-performance-indicators)
+- [Key Insights](#key-insights)
+- [Tools & Technologies](#tools--technologies)
+- [Project Contribution](#project-contribution)
+- [Repository Structure](#repository-structure)
+- [Future Improvements](#future-improvements)
+- [Dashboard Preview](#dashboard-preview)
+- [Author](#author)
 
-The dataset consists of four annual datasets (2021–2024) and includes information about:
+---
+
+# Project Overview
+
+Road traffic accidents remain one of the leading causes of injury and fatalities worldwide. Understanding when, where, and why accidents occur is essential for improving road safety and supporting evidence-based policy decisions.
+
+This project analyzes official French road traffic accident data from **2021–2024** to identify accident patterns across different demographic groups, environmental conditions, road characteristics, and geographical locations.
+
+The final deliverable is an interactive Power BI dashboard that enables users to explore accident data through dynamic visualizations and key performance indicators.
+
+---
+
+# Project Objectives
+
+The analysis aims to answer the following business questions:
+
+- How have road traffic accidents changed between 2021 and 2024?
+- Which demographic groups are most frequently involved in accidents?
+- How do weather and lighting conditions influence accident occurrence?
+- Which road characteristics are associated with more severe accidents?
+- Where are accident hotspots located across France?
+- How can interactive dashboards support road safety analysis and decision-making?
+
+---
+
+# Dataset
+
+The project uses the official French road traffic accident datasets containing **personal injury accidents** recorded between **2021 and 2024**.
+
+The analysis combines four annual datasets containing detailed information about:
 
 - Accident characteristics
-- Vehicles involved
 - Road users
+- Vehicles involved
 - Accident locations
 
-Main entities include:
+### Main Data Tables
 
 - Characteristics
 - Users
@@ -40,9 +73,9 @@ Main entities include:
 
 ---
 
-## 🏗️ Data Model
+# Data Model
 
-A **Star Schema** was implemented to improve performance and simplify reporting.
+To improve reporting performance and simplify analysis, the data was transformed into a **Star Schema**.
 
 ### Fact Table
 
@@ -55,88 +88,128 @@ A **Star Schema** was implemented to improve performance and simplify reporting.
 - Dim_Locations
 - Dim_Weather
 
----
-
-## 🛠 Tools & Technologies
-
-- Python (PyCharm)
-- SQL (MySQL)
-- Microsoft Power BI Desktop
-- Power Query
-- DAX
-- Data Modelling
-- Star Schema
-- Microsoft Excel
+The dimensional model enables efficient filtering, reusable DAX measures, and scalable dashboard development.
 
 ---
 
-## 📈 Dashboard Features
+# Project Workflow
 
-The dashboard provides interactive analysis including:
+## 1. Data Exploration
 
-### Accident Overview
+- Load annual datasets
+- Inspect data structure and column types
+- Identify missing values
+- Explore relationships between tables
+
+---
+
+## 2. Data Preparation
+
+Data preprocessing included:
+
+- Cleaning missing values
+- Removing duplicate records
+- Correcting data types
+- Creating calculated columns
+- Standardizing categorical values
+- Power Query transformations
+- Building relationships
+- Creating a dedicated Date table
+
+---
+
+## 3. Data Modeling
+
+- Design a Star Schema
+- Create dimension tables
+- Establish one-to-many relationships
+- Optimize the semantic model for reporting
+
+---
+
+## 4. Dashboard Development
+
+Power BI was used to build an interactive dashboard featuring:
+
+- Executive KPI cards
+- Trend analysis
+- Geographic mapping
+- Demographic insights
+- Environmental analysis
+- Road infrastructure analysis
+- Interactive slicers and drill-down functionality
+
+---
+
+# Dashboard Features
+
+The dashboard provides multiple analytical views.
+
+## Accident Overview
 
 - Total accidents
-- Total casualties
-- Number of vehicles involved
-- Number of road users
+- Total road users involved
+- Total vehicles involved
+- Fatal accidents
+- Serious injuries
 
-### Time Analysis
+---
+
+## Time Analysis
 
 - Accidents by Year
-- Accidents by Month
-- Accident trends over time
+- Monthly accident trends
+- Seasonal patterns
+- Year-over-Year comparisons
 
-### Demographic Analysis
+---
+
+## Demographic Analysis
 
 - Age distribution
 - Gender distribution
-- User category
+- User categories
 - Travel purpose
 
-### Environmental Analysis
+---
+
+## Environmental Analysis
 
 - Weather conditions
 - Lighting conditions
 - Road surface conditions
 
-### Road Analysis
+---
+
+## Road Analysis
 
 - Road category
 - Speed limit
 - Number of traffic lanes
 - Road profile
 
-### Injury Analysis
+---
+
+## Injury Analysis
 
 - Injury severity
-- Serious vs minor injuries
 - Fatal accidents
+- Serious injuries
+- Minor injuries
 
-### Geographic Analysis
+---
 
-- Accident locations
+## Geographic Analysis
+
 - Department-level analysis
-- Latitude & Longitude mapping
+- Interactive accident map
+- Latitude & Longitude visualization
 
 ---
 
-## 📊 Data Preparation
+# Key Performance Indicators
 
-Data preprocessing included:
-
-- Cleaning missing values
-- Correcting data types
-- Removing duplicates
-- Creating calculated columns
-- Building relationships
-- Creating a Date table
-- Data normalisation
-- Power Query transformations
-
----
-
-## 📐 DAX Measures
+The dashboard includes several DAX measures, including:
 
 - Total Accidents
 - Total Users Involved
@@ -147,24 +220,69 @@ Data preprocessing included:
 - Accident Rate
 - Year-over-Year Growth
 - Percentage of Severe Accidents
-- Accidents per 1000 Users
+- Accidents per 1,000 Users
 
 ---
 
-## 📷 Dashboard Preview
+# Key Insights
 
-<img width="1364" height="789" alt="2026-07-20 22_54_23-France" src="https://github.com/user-attachments/assets/555e1477-7979-4287-832a-af0fa4ec27d1" />
+The analysis revealed several important patterns:
+
+- Accident frequency fluctuates throughout the year, with clear seasonal trends.
+- Poor lighting conditions are associated with a higher proportion of severe accidents.
+- Young drivers and road users account for a significant share of reported accidents.
+- Urban areas experience considerably higher accident volumes than rural regions.
+- Weather conditions influence both accident frequency and injury severity.
+- Geographic analysis highlights departments with consistently higher accident concentrations, helping identify potential road safety hotspots.
+
+The dashboard enables stakeholders to quickly identify:
+
+- High-risk demographic groups
+- Accident hotspots
+- Seasonal accident trends
+- Environmental risk factors
+- Areas requiring targeted road safety interventions
 
 ---
 
-## 📁 Repository Structure
+# Tools & Technologies
 
-```
+- Microsoft Power BI Desktop
+- Power Query
+- DAX
+- Python
+- SQL
+- Microsoft Excel
+- Data Modeling
+- Star Schema
+
+---
+
+# Project Contribution
+
+This project demonstrates the complete business intelligence workflow, from raw data preparation to interactive reporting.
+
+Key contributions include:
+
+- Designing an optimized Star Schema data model
+- Cleaning and transforming large multi-year datasets using Power Query
+- Developing reusable DAX measures and KPIs
+- Creating interactive Power BI dashboards
+- Designing clear analytical storytelling for business users
+- Translating complex accident data into actionable insights
+
+The primary focus was on transforming raw transportation data into an intuitive reporting solution that supports road safety analysis and informed decision-making.
+
+---
+
+# Repository Structure
+
+```text
 France_Road_Traffic_Accident_Analysis/
 │
 ├── Datasets/
-│   ├── Raw Data
-│   └── Clean Data
+│   ├── Raw Data/
+│   └── Clean Data/
 │
 ├── Images/
 │   ├── dashboard_overview.png
@@ -180,35 +298,57 @@ France_Road_Traffic_Accident_Analysis/
 
 ---
 
-## 💡 Key Insights
+# Future Improvements
 
-- Accident frequency varies throughout the year.
-- Poor lighting conditions are associated with higher accident severity.
-- Young drivers are involved in a significant proportion of accidents.
-- Urban areas experience higher accident volumes than rural regions.
-- Weather conditions influence accident occurrence and severity.
-
----
-
-## 🚀 Future Improvements
+Potential future enhancements include:
 
 - Predict accident severity using Machine Learning
-- Integrate weather API data
-- Add forecasting with Power BI
-- Perform hotspot analysis using GIS
-- Build a real-time dashboard
+- Integrate real-time weather data through APIs
+- Implement accident forecasting models
+- Perform GIS-based hotspot analysis
+- Develop a real-time monitoring dashboard
+- Add advanced drill-through reports and mobile-optimized layouts
 
 ---
 
-## 👤 Author
+# Dashboard Preview
 
-**Shahin Amirov**
+## Executive Dashboard
 
-- Microsoft Certified: Power BI Data Analyst Associate (PL-300)
-- Data Analyst
-- LinkedIn: *https://www.linkedin.com/in/shahin-amirov/*
-- GitHub: *https://github.com/code-with-shahin*
+![Executive Dashboard](images/dashboard_overview.png)
 
 ---
 
-## ⭐ If you found this project useful, feel free to star the repository!
+## Accident Trends
+
+![Accident Trends](images/accident_trends.png)
+
+---
+
+## Geographic Analysis
+
+![Map Analysis](images/map_analysis.png)
+
+---
+
+# Author
+
+## Shahin Amirov
+
+**Microsoft Certified: Power BI Data Analyst Associate (PL-300)**
+
+Data Analyst | Power BI | SQL | Python
+
+🔗 LinkedIn:  
+https://www.linkedin.com/in/shahin-amirov/
+
+💻 GitHub:  
+https://github.com/code-with-shahin/
+
+---
+
+## Support
+
+If you found this project interesting or useful, consider giving it a ⭐ on GitHub.
+
+Feedback, suggestions, and contributions are always welcome!
