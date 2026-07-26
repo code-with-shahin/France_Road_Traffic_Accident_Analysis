@@ -202,14 +202,14 @@ The dashboard includes several DAX measures, including:
 
 The analysis revealed several important patterns:
 
-- Accident frequency fluctuates throughout the year, with clear seasonal trends.
-- Poor lighting conditions are associated with a higher proportion of severe accidents.
+- Accident frequency fluctuates throughout the year, with clear seasonal trends (more accidents in Summer compared to Winter).
+- Poor lighting conditions are associated with a higher proportion of severe accidents (fewer fatal accidents at night with street lighting).
 - Young drivers (20-25 year-olds) and road users account for a significant share of reported accidents.
 - Urban areas experience considerably higher accident volumes than rural regions.
-- Weather conditions influence both accident frequency and injury severity.
-- Geographic analysis highlights departments with consistently higher accident concentrations, helping identify potential road safety hotspots.
+- Weather conditions influence both accident frequency and injury severity (more fatal accidents in foggy and stormy weather).
+- Geographic analysis highlights departments with consistently higher accident concentrations (Paris and Marseille), helping identify potential road safety hotspots.
 
-The dashboard enables the audience to quickly identify:
+The dashboard enables the audience to identify quickly:
 
 - High-risk demographic groups
 - Accident hotspots
