@@ -293,25 +293,25 @@ Potential future enhancements include:
 
 ## Executive Dashboard
 
-<img width="1364" height="789" alt="2026-07-20 22_54_23-France" src="https://github.com/user-attachments/assets/555e1477-7979-4287-832a-af0fa4ec27d1" />
+<img width="1439" height="807" alt="dashboard_overview" src="https://github.com/user-attachments/assets/7b43cd41-c75e-4ec3-8b4d-9eed19974a98" />
 
 ---
 
 ## Temporal Analysis
 
-<img width="1442" height="800" alt="tempo" src="https://github.com/user-attachments/assets/820f4091-6a0e-48bd-b7ca-98f9a8ed2b80" />
+<img width="1443" height="799" alt="temporal_analysis" src="https://github.com/user-attachments/assets/b4a961c3-67d7-472b-b172-bd8e2d6ac8b2" />
 
 ---
 
 ## User Analysis
 
-<img width="1444" height="800" alt="user" src="https://github.com/user-attachments/assets/52f25b84-83dc-4b9f-a30a-ea5d7ef399cf" />
+<img width="1444" height="807" alt="users_analysis" src="https://github.com/user-attachments/assets/00289823-d11d-4030-8e67-a6ea7d3986d1" />
 
 ---
 
 ## Geographic Analysis
 
-<img width="1444" height="798" alt="geo" src="https://github.com/user-attachments/assets/e3c09165-4d5d-463f-b8b6-1faecd81978e" />
+<img width="1443" height="803" alt="geographical_analysis" src="https://github.com/user-attachments/assets/78915114-a193-4f10-9771-b7da6eeab7cf" />
 
 ---
 
