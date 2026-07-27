@@ -202,12 +202,12 @@ The dashboard includes several DAX measures, including:
 
 The analysis revealed several important patterns:
 
-- Accident frequency fluctuates throughout the year, with clear seasonal trends (more accidents in Summer compared to Winter).
-- Poor lighting conditions are associated with a higher proportion of severe accidents (fewer fatal accidents at night with street lighting).
-- Young drivers (20-25 year-olds) and road users account for a significant share of reported accidents.
-- Urban areas experience considerably higher accident volumes than rural regions.
-- Weather conditions influence both accident frequency and injury severity (more fatal accidents in foggy and stormy weather).
-- Geographic analysis highlights departments with consistently higher accident concentrations (Paris and Marseille), helping identify potential road safety hotspots.
+- Accident frequency varies throughout the year, with seasonal patterns showing higher accident volumes during summer compared with winter.
+- Poor lighting conditions are linked to a higher share of severe accidents, with fatal crashes occurring twice as often on unlit roads at night.
+- Young adults (18–24) account for 17% of road fatalities despite representing only 8% of France's population.
+- Urban areas record significantly higher accident volumes compared with rural regions, reflecting greater traffic density and road exposure.
+- Weather conditions impact both accident frequency and severity, with foggy and stormy conditions linked to a higher proportion of fatal crashes.
+- Geographic analysis identifies accident hotspots, with departments such as Paris and Marseille showing consistently higher accident concentrations.
 
 The dashboard enables the audience to identify quickly:
 
