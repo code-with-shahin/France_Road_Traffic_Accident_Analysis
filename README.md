@@ -269,7 +269,7 @@ France_Road_Traffic_Accident_Analysis/
 │
 ├── PowerBI/
 │   ├── Calendar DAX.txt
-│   └── France.pbix *(Available upon request; omitted because the file exceeds GitHub's 25 MB limit.)*
+│   └── France.pbix *(Available upon request.)*
 │
 └── README.md
 ```
