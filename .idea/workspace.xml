@@ -6,10 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="258664b4-2f5f-4d13-b134-815a1733bde3" name="Changes" comment="data cleaning">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/processed/characteristics.csv" beforeDir="false" afterPath="$PROJECT_DIR$/datasets/processed/characteristics.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/datasets/processed/locations.csv" beforeDir="false" afterPath="$PROJECT_DIR$/datasets/processed/locations.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/processed/users.csv" beforeDir="false" afterPath="$PROJECT_DIR$/datasets/processed/users.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/datasets/processed/vehicles.csv" beforeDir="false" afterPath="$PROJECT_DIR$/datasets/processed/vehicles.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,7 +14,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="35" />
+    <option name="cachedIndexableFilesCount" value="47" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -31,7 +28,7 @@
 }</component>
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/code-with-shahin/Paris_Road_Traffic_Accident_Analysis.git&quot;,
+    &quot;url&quot;: &quot;https://github.com/code-with-shahin/France_Road_Traffic_Accident_Analysis.git&quot;,
     &quot;accountId&quot;: &quot;72f398b1-2a14-4afe-a58e-c0481f0c435a&quot;
   }
 }</component>
@@ -41,23 +38,23 @@
   </component>
   <component name="NextEditCompletionFeaturesState">
     <decayedCancelled>
-      <entry key="MS100" value="1.456512131890519" />
-      <entry key="MS500" value="3.217694801576875" />
-      <entry key="S2" value="4.4165103294029775" />
-      <entry key="S5" value="4.752377047254541" />
-      <entry key="S10" value="4.873845758942565" />
-      <entry key="S30" value="5.615404859081882" />
-      <entry key="S60" value="10.174406373192564" />
-      <entry key="M2" value="20.082386117253282" />
-      <entry key="M5" value="39.66890226808756" />
-      <entry key="M10" value="59.193316349908244" />
-      <entry key="M15" value="72.76801691281611" />
-      <entry key="M30" value="100.82508172355418" />
-      <entry key="H1" value="136.1994898032495" />
-      <entry key="H2" value="180.98364772947474" />
-      <entry key="H4" value="230.0863855488034" />
-      <entry key="D1" value="309.4526104501081" />
-      <entry key="W1" value="329.4233696993263" />
+      <entry key="MS100" value="1.3214169057383627" />
+      <entry key="MS500" value="3.3784595549781957" />
+      <entry key="S2" value="5.095123286070187" />
+      <entry key="S5" value="5.610902955963333" />
+      <entry key="S10" value="5.800752615330716" />
+      <entry key="S30" value="6.587191909668602" />
+      <entry key="S60" value="11.148815033146528" />
+      <entry key="M2" value="21.057113942582504" />
+      <entry key="M5" value="40.648926590812735" />
+      <entry key="M10" value="60.178410776400696" />
+      <entry key="M15" value="73.75580050485763" />
+      <entry key="M30" value="101.81661803247697" />
+      <entry key="H1" value="137.19377309774532" />
+      <entry key="H2" value="181.97984947342584" />
+      <entry key="H4" value="231.0839711550117" />
+      <entry key="D1" value="310.45206924488036" />
+      <entry key="W1" value="330.42328739464773" />
     </decayedCancelled>
     <decayedSelected>
       <entry key="MS100" value="0.0" />
@@ -79,23 +76,23 @@
       <entry key="W1" value="0.0" />
     </decayedSelected>
     <decayedShown>
-      <entry key="MS100" value="1.3758346236517753" />
-      <entry key="MS500" value="3.18466134316726" />
-      <entry key="S2" value="4.405412772711786" />
-      <entry key="S5" value="4.7476204398013175" />
-      <entry key="S10" value="4.871410037464964" />
-      <entry key="S30" value="5.614466694363403" />
-      <entry key="S60" value="10.173542743918675" />
-      <entry key="M2" value="20.081477389524753" />
-      <entry key="M5" value="39.667934248082624" />
-      <entry key="M10" value="59.192000345743466" />
-      <entry key="M15" value="72.76641596756926" />
-      <entry key="M30" value="100.82326395791175" />
-      <entry key="H1" value="136.197832016855" />
-      <entry key="H2" value="180.9822998418919" />
-      <entry key="H4" value="230.0854164847311" />
-      <entry key="D1" value="309.4523689534543" />
-      <entry key="W1" value="329.42333233040387" />
+      <entry key="MS100" value="0.5242890852471256" />
+      <entry key="MS500" value="3.0932230586712057" />
+      <entry key="S2" value="5.012063838950779" />
+      <entry key="S5" value="5.576518826709103" />
+      <entry key="S10" value="5.783356406246731" />
+      <entry key="S30" value="6.5812342527270555" />
+      <entry key="S60" value="11.145438309970375" />
+      <entry key="M2" value="21.05494793352309" />
+      <entry key="M5" value="40.647455498141845" />
+      <entry key="M10" value="60.17684329185555" />
+      <entry key="M15" value="73.75403194682323" />
+      <entry key="M30" value="101.81471647512392" />
+      <entry key="H1" value="137.19207340790143" />
+      <entry key="H2" value="181.97848062739467" />
+      <entry key="H4" value="231.08299160768513" />
+      <entry key="D1" value="310.4518259997374" />
+      <entry key="W1" value="330.42324977588993" />
     </decayedShown>
   </component>
   <component name="ProjectColorInfo">{
@@ -107,30 +104,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;Python.Paris_traffic_analysis.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/PycharmProjects/Paris_Road_Traffic_Analysis&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;ml.llm.LLMConfigurable&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "Python.France_traffic_analysis.executor": "Run",
+    "Python.Paris_traffic_analysis.executor": "Run",
+    "Python.main.executor": "Run",
+    "RunOnceActivity.MCP Project settings loaded": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "master",
+    "junie.onboarding.icon.badge.shown": "true",
+    "last_opened_file_path": "D:/PycharmProjects/Paris_Road_Traffic_Analysis",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "ml.llm.LLMConfigurable",
+    "to.speed.mode.migration.done": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\PycharmProjects\Paris_Road_Traffic_Analysis" />
@@ -146,13 +144,13 @@
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="WORKING_DIRECTORY" value="D:\PycharmProjects\Paris_Road_Traffic_Analysis" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="DEBUG_JUST_MY_CODE" value="false" />
       <option name="RUN_TOOL" value="" />
-      <option name="SCRIPT_NAME" value="D:\PycharmProjects\Paris_Road_Traffic_Analysis\France_traffic_analysis.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Python/France_traffic_analysis.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -170,7 +168,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-50341a9f1f9c-c2ffad84badb-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-261.26222.68" />
+        <option value="bundled-python-sdk-c6d794e1806d-5bd6d13a2a75-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-262.8665.309" />
       </set>
     </attachedChunks>
   </component>
@@ -294,7 +292,15 @@
       <option name="project" value="LOCAL" />
       <updated>1784137597200</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="data cleaning">
+      <option name="closed" value="true" />
+      <created>1784322954726</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1784322954726</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
