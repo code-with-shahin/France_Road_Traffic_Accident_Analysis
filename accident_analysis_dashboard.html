@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Accident Analysis Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+  :root{
+    --asphalt: #1B1F25;
+    --asphalt-panel: #262B33;
+    --asphalt-panel-2: #2E3540;
+    --chalk: #F2EFE9;
+    --chalk-dim: #A7ADB8;
+    --line-hair: #3B424D;
+    --amber: #F2B705;
+    --orange: #E88A3A;
+    --red: #D6484F;
+    --slate-green: #6C8A7D;
+    --steel: #6F98B8;
+    --teal: #7FB6AC;
+    --sand: #C9A66B;
+    --grey: #8A93A1;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--asphalt);
+    color:var(--chalk);
+    font-family:'IBM Plex Sans', sans-serif;
+    min-height:100vh;
+    padding:28px 24px 60px;
+  }
+  .wrap{max-width:1220px;margin:0 auto;}
+
+  /* Header */
+  header{margin-bottom:18px;}
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--amber);
+    margin:0 0 8px;
+  }
+  h1{
+    font-family:'Oswald', sans-serif;
+    font-weight:700;
+    font-size:clamp(28px, 4.5vw, 46px);
+    letter-spacing:.01em;
+    text-transform:uppercase;
+    margin:0 0 6px;
+    line-height:1.02;
+  }
+  .subtitle{
+    color:var(--chalk-dim);
+    font-size:15px;
+    margin:0 0 16px;
+  }
+  .laneline{
+    height:4px;
+    width:100%;
+    background-image:repeating-linear-gradient(90deg, var(--amber) 0 28px, transparent 28px 46px);
+    opacity:.85;
+    border-radius:2px;
+    margin-bottom:20px;
+  }
+
+  /* Tab nav */
+  .tabs{
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
+    margin-bottom:22px;
+    border-bottom:1px solid var(--line-hair);
+    padding-bottom:0;
+  }
+  .tab-btn{
+    font-family:'Oswald', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.03em;
+    font-size:14px;
+    background:transparent;
+    border:none;
+    color:var(--chalk-dim);
+    padding:10px 18px 12px;
+    cursor:pointer;
+    border-bottom:3px solid transparent;
+    transition:all .15s ease;
+  }
+  .tab-btn:hover{color:var(--chalk);}
+  .tab-btn.active{color:var(--amber); border-bottom-color:var(--amber);}
+
+  .tab-panel{display:none;}
+  .tab-panel.active{display:block;}
+
+  /* Generic cards / grids */
+  .kpi-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:14px;
+    margin:0 0 18px;
+  }
+  .kpi{
+    background:var(--asphalt-panel);
+    border:1px solid var(--line-hair);
+    border-radius:10px;
+    padding:18px 18px 16px;
+  }
+  .kpi-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+    color:var(--chalk-dim);
+    margin:0 0 10px;
+  }
+  .kpi-value{
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:600;
+    font-size:28px;
+    line-height:1;
+  }
+  .kpi-value.red{color:var(--red);}
+  .kpi-sub{font-size:12.5px; color:var(--chalk-dim); margin-top:8px;}
+
+  .spectrum-card{
+    background:var(--asphalt-panel);
+    border:1px solid var(--line-hair);
+    border-radius:10px;
+    padding:20px 22px 22px;
+    margin-bottom:18px;
+  }
+  .spectrum-bar{
+    display:flex;
+    height:34px;
+    border-radius:6px;
+    overflow:hidden;
+    background:var(--asphalt);
+  }
+  .seg{height:100%; width:0; transition:width 1.1s cubic-bezier(.2,.7,.2,1);}
+  .spectrum-legend{display:flex; flex-wrap:wrap; gap:22px; margin-top:14px;}
+  .legend-item{display:flex; align-items:center; gap:8px; font-size:13px; color:var(--chalk-dim);}
+  .swatch{width:11px;height:11px;border-radius:3px;flex:none;}
+  .legend-item b{color:var(--chalk); font-weight:600; font-family:'IBM Plex Mono', monospace; margin-left:2px;}
+
+  .grid-2{display:grid; grid-template-columns:1.55fr 1fr; gap:16px;}
+  .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  .grid-1-2{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+
+  .card{
+    background:var(--asphalt-panel);
+    border:1px solid var(--line-hair);
+    border-radius:10px;
+    padding:20px 20px 14px;
+    margin-bottom:16px;
+  }
+  .card-head{
+    display:flex; align-items:center; justify-content:space-between;
+    margin-bottom:6px; flex-wrap:wrap; gap:10px;
+  }
+  .card-title{
+    font-family:'Oswald', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    font-size:14px;
+    color:var(--chalk-dim);
+    margin:0;
+  }
+  .card-note{font-size:11.5px; color:var(--grey); margin:0 0 10px;}
+  .no-filter-note{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px;
+    color:var(--grey);
+    border:1px dashed var(--line-hair);
+    padding:3px 8px;
+    border-radius:5px;
+  }
+
+  .year-filters{display:flex; gap:6px;}
+  .yf-btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11.5px;
+    background:transparent;
+    border:1px solid var(--line-hair);
+    color:var(--chalk-dim);
+    padding:5px 10px;
+    border-radius:5px;
+    cursor:pointer;
+    transition:all .15s ease;
+  }
+  .yf-btn:hover{border-color:var(--amber); color:var(--chalk);}
+  .yf-btn.active{background:var(--amber); border-color:var(--amber); color:var(--asphalt); font-weight:600;}
+
+  .chart-box{position:relative; height:280px;}
+  .chart-box.tall{height:340px;}
+  .chart-box.short{height:220px;}
+  .donut-box{position:relative; height:210px;}
+
+  .gender-stats{margin-top:14px; display:flex; flex-direction:column; gap:10px;}
+  .gstat{display:flex; align-items:center; justify-content:space-between; font-size:13.5px;}
+  .gstat .name{display:flex; align-items:center; gap:8px; color:var(--chalk-dim);}
+  .gstat .num{font-family:'IBM Plex Mono', monospace; color:var(--chalk); font-weight:600;}
+
+  .section-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--grey);
+    margin:4px 0 14px;
+  }
+
+  footer{margin-top:26px; font-size:12px; color:var(--chalk-dim); text-align:center;}
+
+  @media (max-width: 900px){
+    .kpi-grid{grid-template-columns:repeat(1,1fr);}
+    .grid-2, .grid-3, .grid-1-2{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">Road Safety &middot; Statistical Bulletin</p>
+    <h1>Accident Analysis Dashboard</h1>
+    <p class="subtitle">France Road Traffic Accident Analysis &middot; Jan 2021 &ndash; Dec 2024</p>
+    <div class="laneline"></div>
+  </header>
+
+  <nav class="tabs" id="tabs">
+    <button class="tab-btn active" data-tab="executive">Executive Dashboard</button>
+    <button class="tab-btn" data-tab="geo">Geographical Analysis</button>
+    <button class="tab-btn" data-tab="users">Users Analysis</button>
+    <button class="tab-btn" data-tab="temporal">Temporal Analysis</button>
+  </nav>
+
+  <!-- ================= EXECUTIVE ================= -->
+  <section class="tab-panel active" id="tab-executive">
+    <section class="kpi-grid">
+      <div class="kpi">
+        <p class="kpi-label">Total Accidents</p>
+        <div class="kpi-value" id="kpi-accidents">0</div>
+        <p class="kpi-sub">Jan 2021 &ndash; Dec 2024</p>
+      </div>
+      <div class="kpi">
+        <p class="kpi-label">Users Involved</p>
+        <div class="kpi-value" id="kpi-users">0</div>
+        <p class="kpi-sub">Across all recorded incidents</p>
+      </div>
+      <div class="kpi">
+        <p class="kpi-label">Fatality Rate</p>
+        <div class="kpi-value red" id="kpi-fatality">0%</div>
+        <p class="kpi-sub">of all users involved</p>
+      </div>
+    </section>
+
+    <div class="spectrum-card">
+      <p class="card-title" style="margin-bottom:14px;">Injury Severity Distribution &middot; all users involved</p>
+      <div class="spectrum-bar" id="spectrum-bar"></div>
+      <div class="spectrum-legend" id="spectrum-legend"></div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-head">
+          <p class="card-title">Total Accidents by Month-Year</p>
+          <div class="year-filters" id="exec-year-filters"></div>
+        </div>
+        <div class="chart-box"><canvas id="trendChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <p class="card-title">Users by Gender</p>
+          <span class="no-filter-note">no year/gender filter in source data</span>
+        </div>
+        <div class="donut-box"><canvas id="genderChart"></canvas></div>
+        <div class="gender-stats" id="gender-stats"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= GEOGRAPHICAL ================= -->
+  <section class="tab-panel" id="tab-geo">
+    <p class="section-label">Slicers for Year / Gender are not available on this tab &mdash; the underlying exports for these visuals contain totals only, with no year or gender breakdown.</p>
+    <div class="card">
+      <div class="card-head"><p class="card-title">Total Accidents by Road Category</p></div>
+      <div class="chart-box tall"><canvas id="roadCategoryChart"></canvas></div>
+    </div>
+    <div class="grid-1-2">
+      <div class="card">
+        <div class="card-head"><p class="card-title">Fatality Rate % by Speed Range</p></div>
+        <div class="chart-box"><canvas id="speedRangeChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><p class="card-title">Injury Severity by Surface Condition</p></div>
+        <div class="chart-box"><canvas id="surfaceChart"></canvas></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= USERS ================= -->
+  <section class="tab-panel" id="tab-users">
+    <p class="section-label">Slicers for Year / Gender are not available on this tab &mdash; the underlying exports for these visuals contain totals only, with no year breakdown (gender is already a dimension in the fatality-rate chart below).</p>
+    <div class="grid-1-2">
+      <div class="card">
+        <div class="card-head"><p class="card-title">Injury Severity per Safety Equipment Used</p></div>
+        <div class="chart-box"><canvas id="safetyEquipChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><p class="card-title">Fatality Rate % by User Category and Gender</p></div>
+        <div class="chart-box"><canvas id="userCategoryChart"></canvas></div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-head"><p class="card-title">Total Users Involved by Age and Injury Severity</p></div>
+      <p class="card-note">Grouped into 10-year age bands for readability (source data is per single year of age).</p>
+      <div class="chart-box tall"><canvas id="ageChart"></canvas></div>
+    </div>
+  </section>
+
+  <!-- ================= TEMPORAL ================= -->
+  <section class="tab-panel" id="tab-temporal">
+    <div class="grid-1-2">
+      <div class="card">
+        <div class="card-head">
+          <p class="card-title">Fatal Injuries by Week Day</p>
+          <div class="year-filters" id="temporal-year-filters"></div>
+        </div>
+        <div class="chart-box"><canvas id="weekdayChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-head">
+          <p class="card-title">Total Accidents by Time of Day</p>
+          <span class="no-filter-note">no year/gender filter in source data</span>
+        </div>
+        <div class="chart-box"><canvas id="timeOfDayChart"></canvas></div>
+      </div>
+    </div>
+    <div class="grid-1-2">
+      <div class="card">
+        <div class="card-head"><p class="card-title">Total Accidents by Lighting Conditions &amp; Injury Severity</p></div>
+        <div class="chart-box tall"><canvas id="lightingChart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-head"><p class="card-title">Severity Index by Atmospheric Conditions</p></div>
+        <div class="chart-box tall"><canvas id="atmosphericChart"></canvas></div>
+      </div>
+    </div>
+  </section>
+
+  <footer>Standalone report built from exported Power BI dashboard data &middot; fully offline, no server required.</footer>
+</div>
+
+<script>
+function getVar(name){ return getComputedStyle(document.documentElement).getPropertyValue(name).trim(); }
+function fmt(n){ return Math.round(n).toLocaleString('en-US'); }
+
+const COLORS = {
+  uninjured: getVar('--slate-green'),
+  slight: getVar('--amber'),
+  hosp: getVar('--orange'),
+  killed: getVar('--red'),
+  male: getVar('--steel'),
+  female: getVar('--teal'),
+  sand: getVar('--sand'),
+  grey: getVar('--grey'),
+};
+const SEV_COLORS = [COLORS.uninjured, COLORS.slight, COLORS.hosp, COLORS.killed];
+const SEV_LABELS = ['Uninjured','Slightly injured','Hospitalised','Killed'];
+const PALETTE = [COLORS.slight, COLORS.hosp, COLORS.red, COLORS.male, COLORS.teal, COLORS.uninjured, COLORS.sand, COLORS.grey, '#B98BC9', '#D9A441', '#5C7A99'];
+
+Chart.defaults.color = getVar('--chalk-dim');
+Chart.defaults.font.family = "'IBM Plex Sans', sans-serif";
+
+const tooltipBase = {
+  backgroundColor: getVar('--asphalt-panel-2'),
+  titleColor: getVar('--chalk'),
+  bodyColor: getVar('--chalk'),
+  borderColor: getVar('--line-hair'),
+  borderWidth: 1,
+  padding: 10,
+};
+
+function countUp(el, target, opts={}){
+  const isPct = !!opts.pct;
+  const dur = 900;
+  const start = performance.now();
+  function tick(now){
+    const p = Math.min(1, (now - start) / dur);
+    const eased = 1 - Math.pow(1 - p, 3);
+    const val = target * eased;
+    el.textContent = isPct ? val.toFixed(1) + '%' : fmt(val);
+    if (p < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+/* ============================================================
+   TAB SWITCHING (lazy chart init so canvases size correctly)
+============================================================ */
+const tabInitializers = {
+  executive: initExecutive,
+  geo: initGeo,
+  users: initUsers,
+  temporal: initTemporal,
+};
+const tabInitialized = {};
+
+document.querySelectorAll('.tab-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const tab = btn.dataset.tab;
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b === btn));
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.id === 'tab-' + tab));
+    if (!tabInitialized[tab]) {
+      tabInitialized[tab] = true;
+      tabInitializers[tab]();
+    }
+  });
+});
+
+/* ============================================================
+   EXECUTIVE DASHBOARD
+============================================================ */
+function initExecutive(){
+  const injurySeverity = [
+    { label: 'Uninjured',        value: 204381, color: COLORS.uninjured },
+    { label: 'Slightly injured', value: 201020, color: COLORS.slight },
+    { label: 'Hospitalised',     value: 76749,  color: COLORS.hosp },
+    { label: 'Killed',           value: 13599,  color: COLORS.killed },
+  ];
+  const genderData = [
+    { label: 'Male',   value: 338441, color: COLORS.male },
+    { label: 'Female', value: 157308, color: COLORS.female },
+  ];
+  const monthlyAccidents = [
+    ['2021-01',3757],['2021-02',3350],['2021-03',4105],['2021-04',3841],['2021-05',4835],['2021-06',5865],
+    ['2021-07',5373],['2021-08',4590],['2021-09',5671],['2021-10',5832],['2021-11',4665],['2021-12',4634],
+    ['2022-01',3981],['2022-02',3901],['2022-03',4529],['2022-04',4340],['2022-05',5299],['2022-06',5418],
+    ['2022-07',5068],['2022-08',4173],['2022-09',4919],['2022-10',5026],['2022-11',4542],['2022-12',4106],
+    ['2023-01',4053],['2023-02',3682],['2023-03',3998],['2023-04',4162],['2023-05',4767],['2023-06',5452],
+    ['2023-07',4754],['2023-08',4121],['2023-09',5161],['2023-10',5389],['2023-11',4833],['2023-12',4450],
+    ['2024-01',4069],['2024-02',3792],['2024-03',4370],['2024-04',4586],['2024-05',4517],['2024-06',5135],
+    ['2024-07',5209],['2024-08',4450],['2024-09',4620],['2024-10',4803],['2024-11',4477],['2024-12',4374],
+  ];
+
+  const totalAccidents = monthlyAccidents.reduce((s,[,v]) => s+v, 0);
+  const totalUsers = injurySeverity.reduce((s,d) => s+d.value, 0);
+  const killed = injurySeverity.find(d => d.label === 'Killed').value;
+  const fatalityRate = (killed / totalUsers) * 100;
+
+  countUp(document.getElementById('kpi-accidents'), totalAccidents);
+  countUp(document.getElementById('kpi-users'), totalUsers);
+  countUp(document.getElementById('kpi-fatality'), fatalityRate, {pct:true});
+
+  const specBar = document.getElementById('spectrum-bar');
+  const specLegend = document.getElementById('spectrum-legend');
+  injurySeverity.forEach(d => {
+    const pct = (d.value / totalUsers) * 100;
+    const seg = document.createElement('div');
+    seg.className = 'seg';
+    seg.style.background = d.color;
+    specBar.appendChild(seg);
+    requestAnimationFrame(() => requestAnimationFrame(() => { seg.style.width = pct + '%'; }));
+    const item = document.createElement('div');
+    item.className = 'legend-item';
+    item.innerHTML = `<span class="swatch" style="background:${d.color}"></span>${d.label} <b>${pct.toFixed(1)}%</b>`;
+    specLegend.appendChild(item);
+  });
+
+  const years = ['All', '2021','2022','2023','2024'];
+  const wrap = document.getElementById('exec-year-filters');
+  years.forEach(y => {
+    const btn = document.createElement('button');
+    btn.className = 'yf-btn' + (y === 'All' ? ' active' : '');
+    btn.textContent = y;
+    btn.addEventListener('click', () => {
+      wrap.querySelectorAll('.yf-btn').forEach(b => b.classList.toggle('active', b === btn));
+      const filtered = y === 'All' ? monthlyAccidents : monthlyAccidents.filter(([m]) => m.startsWith(y));
+      trendChart.data.labels = filtered.map(([m]) => m);
+      trendChart.data.datasets[0].data = filtered.map(([,v]) => v);
+      trendChart.update();
+    });
+    wrap.appendChild(btn);
+  });
+
+  const trendChart = new Chart(document.getElementById('trendChart').getContext('2d'), {
+    type: 'line',
+    data: {
+      labels: monthlyAccidents.map(([m]) => m),
+      datasets: [{
+        label: 'Accidents',
+        data: monthlyAccidents.map(([,v]) => v),
+        borderColor: COLORS.slight,
+        backgroundColor: 'rgba(242,183,5,0.12)',
+        pointRadius: 0, pointHoverRadius: 5, pointHoverBackgroundColor: COLORS.slight,
+        borderWidth: 2.5, tension: 0.3, fill: true,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { display: false },
+        tooltip: { ...tooltipBase, callbacks: { label: (ctx) => ' ' + fmt(ctx.parsed.y) + ' accidents' } }
+      },
+      scales: {
+        x: { grid: { color: 'rgba(255,255,255,0.04)' }, ticks: { maxRotation: 0, autoSkip: true, maxTicksLimit: 8 } },
+        y: { grid: { color: 'rgba(255,255,255,0.06)' }, ticks: { callback: v => fmt(v) } }
+      }
+    }
+  });
+
+  new Chart(document.getElementById('genderChart').getContext('2d'), {
+    type: 'doughnut',
+    data: {
+      labels: genderData.map(d => d.label),
+      datasets: [{ data: genderData.map(d => d.value), backgroundColor: genderData.map(d => d.color), borderColor: getVar('--asphalt-panel'), borderWidth: 3, hoverOffset: 6 }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false, cutout: '68%',
+      plugins: {
+        legend: { display: false },
+        tooltip: { ...tooltipBase, callbacks: { label: (ctx) => ' ' + ctx.label + ': ' + fmt(ctx.parsed) + ` (${((ctx.parsed/totalUsers)*100).toFixed(1)}%)` } }
+      }
+    }
+  });
+
+  const genderStatsEl = document.getElementById('gender-stats');
+  genderData.forEach(d => {
+    const pct = (d.value/totalUsers)*100;
+    const row = document.createElement('div');
+    row.className = 'gstat';
+    row.innerHTML = `<span class="name"><span class="swatch" style="background:${d.color}"></span>${d.label}</span><span class="num">${fmt(d.value)} &middot; ${pct.toFixed(1)}%</span>`;
+    genderStatsEl.appendChild(row);
+  });
+}
+
+/* ============================================================
+   GEOGRAPHICAL ANALYSIS
+============================================================ */
+function initGeo(){
+  const roadCategory = [
+    ['Municipal roads', 92339], ['Departmental road', 83064], ['Motorway', 20706],
+    ['National road', 14211], ['Urban metropolitan roads', 7788],
+  ];
+  new Chart(document.getElementById('roadCategoryChart').getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels: roadCategory.map(d => d[0]),
+      datasets: [{ data: roadCategory.map(d => d[1]), backgroundColor: COLORS.slight, borderRadius: 4, maxBarThickness: 60 }]
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { ...tooltipBase, callbacks: { label: ctx => ' ' + fmt(ctx.parsed.x) + ' accidents' } } },
+      scales: {
+        x: { grid: { color: 'rgba(255,255,255,0.06)' }, ticks: { callback: v => fmt(v) } },
+        y: { grid: { display: false } }
+      }
+    }
+  });
+
+  const speedRange = [
+    ['50\u201370 km/h', 8.93], ['70\u201390 km/h', 5.56], ['90\u2013110 km/h', 3.43],
+    ['110+ km/h', 3.30], ['<50 km/h', 1.57],
+  ];
+  new Chart(document.getElementById('speedRangeChart').getContext('2d'), {
+    type: 'bar',
+    data: { labels: speedRange.map(d => d[0]), datasets: [{ data: speedRange.map(d => d[1]), backgroundColor: COLORS.red, borderRadius: 4, maxBarThickness: 46 }] },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { ...tooltipBase, callbacks: { label: ctx => ' ' + ctx.parsed.y.toFixed(2) + '%' } } },
+      scales: {
+        x: { grid: { display: false } },
+        y: { grid: { color: 'rgba(255,255,255,0.06)' }, ticks: { callback: v => v + '%' } }
+      }
+    }
+  });
+
+  const surfaceRaw = {
+    'Normal': {Uninjured:165911, 'Slightly injured':159694, Hospitalised:62374, Killed:10725},
+    'Wet': {Uninjured:36257, 'Slightly injured':38636, Hospitalised:12774, Killed:2571},
+    'Icy': {Uninjured:658, 'Slightly injured':753, Hospitalised:415, Killed:90},
+    'Other': {Uninjured:528, 'Slightly injured':751, Hospitalised:598, Killed:113},
+    'Snowy': {Uninjured:374, 'Slightly injured':320, Hospitalised:150, Killed:23},
+    'Puddles': {Uninjured:271, 'Slightly injured':343, Hospitalised:129, Killed:12},
+    'Fats - oil': {Uninjured:158, 'Slightly injured':276, Hospitalised:134, Killed:10},
+    'Muddy': {Uninjured:74, 'Slightly injured':96, Hospitalised:111, Killed:25},
+    'Flooded': {Uninjured:87, 'Slightly injured':100, Hospitalised:34, Killed:20},
+    'Not specified': {Uninjured:63, 'Slightly injured':51, Hospitalised:30, Killed:10},
+  };
+  const surfaceLabels = Object.keys(surfaceRaw);
+  new Chart(document.getElementById('surfaceChart').getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels: surfaceLabels,
+      datasets: SEV_LABELS.map((sev,i) => ({
+        label: sev,
+        data: surfaceLabels.map(l => surfaceRaw[l][sev]),
+        backgroundColor: SEV_COLORS[i],
+      }))
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom', labels: { boxWidth: 10, padding: 12, font: { size: 11 } } },
+        tooltip: { ...tooltipBase, callbacks: { label: ctx => ' ' + ctx.dataset.label + ': ' + fmt(ctx.parsed.x) } }
+      },
+      scales: {
+        x: { stacked: true, grid: { color: 'rgba(255,255,255,0.06)' }, ticks: { callback: v => fmt(v) } },
+        y: { stacked: true, grid: { display: false }, ticks: { font: { size: 11 } } }
+      }
+    }
+  });
+}
+
+/* ============================================================
+   USERS ANALYSIS
+============================================================ */
+function initUsers(){
+  const safetyEquip = {
+    Used: {Uninjured:178478, 'Slightly injured':146361, Hospitalised:53730, Killed:8204},
+    'Not Used': {Uninjured:23380, 'Slightly injured':52543, Hospitalised:21874, Killed:5199},
+  };
+  const eqLabels = Object.keys(safetyEquip);
+  new Chart(document.getElementById('safetyEquipChart').getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels: eqLabels,
+      datasets: SEV_LABELS.map((sev,i) => ({ label: sev, data: eqLabels.map(l => safetyEquip[l][sev]), backgroundColor: SEV_COLORS[i], borderRadius: 3 }))
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom', labels: { boxWidth: 10, padding: 12, font: { size: 11 } } },
+        tooltip: { ...tooltipBase, callbacks: { label: ctx => ' ' + ctx.dataset.label + ': ' + fmt(ctx.parsed.y) } }
+      },
+      scales: {
+        x: { grid: { display: false } },
+        y: { grid: { color: 'rgba(255,255,255,0.06)' }, ticks: { callback: v => fmt(v) } }
+      }
+    }
+  });
+
+  const userCat = [
+    ['Pedestrian','Male',6.54], ['Pedestrian','Female',3.82],
+    ['Driver','Male',3.03], ['Driver','Female',1.53],
+    ['Passenger','Male',2.33], ['Passenger','Female',1.88],
+  ];
+  const cats = [...new Set(userCat.map(d => d[0]))];
+  new Chart(document.getElementById('userCategoryChart').getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels: cats,
+      datasets: [
+        { label: 'Male', data: cats.map(c => (userCat.find(d => d[0]===c && d[1]==='Male')||[,,0])[2]), backgroundColor: COLORS.male, borderRadius: 4 },
+        { label: 'Female', data: cats.map(c => (userCat.find(d => d[0]===c && d[1]==='Female')||[,,0])[2]), backgroundColor: COLORS.female, borderRadius: 4 },
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom', labels: { boxWidth: 10, padding: 12, font: { size: 11 } } },
+        tooltip: { ...tooltipBase, callbacks: { label: ctx => ' ' + ctx.dataset.label + ': ' + ctx.parsed.y.toFixed(2) + '%' } }
+      },
+      scales: {
+        x: { grid: { display: false } },
+        y: { grid: { color: 'rgba(255,255,255,0.06)' }, ticks: { callback: v => v + '%' } }
+      }
+    }
+  });
+
+  const ageBuckets = {
+    '0-9':   {Uninjured:5048, 'Slightly injured':7416, Hospitalised:1605, Killed:172},
+    '10-19': {Uninjured:14517,'Slightly injured':28040, Hospitalised:11328, Killed:1026},
+    '20-29': {Uninjured:50454,'Slightly injured':53920, Hospitalised:17521, Killed:2723},
+    '30-39': {Uninjured:39497,'Slightly injured':35919, Hospitalised:10761, Killed:1837},
+    '40-49': {Uninjured:33127,'Slightly injured':26799, Hospitalised:8962,  Killed:1586},
+    '50-59': {Uninjured:28270,'Slightly injured':22385, Hospitalised:9806,  Killed:1721},
+    '60-69': {Uninjured:16565,'Slightly injured':12612, Hospitalised:7107,  Killed:1524},
+    '70-79': {Uninjured:9700, 'Slightly injured':7640,  Hospitalised:5300,  Killed:1468},
+    '80-89': {Uninjured:4096, 'Slightly injured':3551,  Hospitalised:2708,  Killed:1071},
+    '90+':   {Uninjured:584,  'Slightly injured':622,   Hospitalised:506,   Killed:275},
+  };
+  const ageLabels = Object.keys(ageBuckets);
+  new Chart(document.getElementById('ageChart').getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels: ageLabels,
+      datasets: SEV_LABELS.map((sev,i) => ({ label: sev, data: ageLabels.map(l => ageBuckets[l][sev]), backgroundColor: SEV_COLORS[i] }))
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom', labels: { boxWidth: 10, padding: 12, font: { size: 11 } } },
+        tooltip: { ...tooltipBase, callbacks: { label: ctx => ' ' + ctx.dataset.label + ': ' + fmt(ctx.parsed.y) } }
+      },
+      scales: {
+        x: { stacked: true, grid: { display: false } },
+        y: { stacked: true, grid: { color: 'rgba(255,255,255,0.06)' }, ticks: { callback: v => fmt(v) } }
+      }
+    }
+  });
+}
+
+/* ============================================================
+   TEMPORAL ANALYSIS
+============================================================ */
+function initTemporal(){
+  const weekdayOrder = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'];
+  const weekdayByYear = {
+    '2021': [385, 375, 416, 457, 542, 553, 491],
+    '2022': [418, 437, 484, 434, 540, 619, 618],
+    '2023': [415, 433, 433, 421, 544, 586, 566],
+    '2024': [393, 448, 425, 469, 564, 594, 539],
+  };
+  const weekdayAll = weekdayOrder.map((_,i) => Object.values(weekdayByYear).reduce((s,arr) => s+arr[i], 0));
+
+  const weekdayChart = new Chart(document.getElementById('weekdayChart').getContext('2d'), {
+    type: 'bar',
+    data: { labels: weekdayOrder, datasets: [{ data: weekdayAll, backgroundColor: COLORS.red, borderRadius: 4, maxBarThickness: 50 }] },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { ...tooltipBase, callbacks: { label: ctx => ' ' + fmt(ctx.parsed.y) + ' fatal injuries' } } },
+      scales: {
+        x: { grid: { display: false } },
+        y: { grid: { color: 'rgba(255,255,255,0.06)' }, ticks: { callback: v => fmt(v) } }
+      }
+    }
+  });
+
+  const years = ['All','2021','2022','2023','2024'];
+  const wrap = document.getElementById('temporal-year-filters');
+  years.forEach(y => {
+    const btn = document.createElement('button');
+    btn.className = 'yf-btn' + (y === 'All' ? ' active' : '');
+    btn.textContent = y;
+    btn.addEventListener('click', () => {
+      wrap.querySelectorAll('.yf-btn').forEach(b => b.classList.toggle('active', b === btn));
+      weekdayChart.data.datasets[0].data = y === 'All' ? weekdayAll : weekdayByYear[y];
+      weekdayChart.update();
+    });
+    wrap.appendChild(btn);
+  });
+
+  const timeOfDay = [['Afternoon',83362],['Morning',59250],['Evening',48967],['Night',29465]];
+  new Chart(document.getElementById('timeOfDayChart').getContext('2d'), {
+    type: 'bar',
+    data: { labels: timeOfDay.map(d=>d[0]), datasets: [{ data: timeOfDay.map(d=>d[1]), backgroundColor: COLORS.slight, borderRadius: 4, maxBarThickness: 60 }] },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: { legend: { display: false }, tooltip: { ...tooltipBase, callbacks: { label: ctx => ' ' + fmt(ctx.parsed.y) + ' accidents' } } },
+      scales: {
+        x: { grid: { display: false } },
+        y: { grid: { color: 'rgba(255,255,255,0.06)' }, ticks: { callback: v => fmt(v) } }
+      }
+    }
+  });
+
+  const lightingRaw = {
+    'Broad daylight': {Uninjured:108010, 'Slightly injured':105533, Hospitalised:44873, Killed:7394},
+    'Night with street lighting on': {Uninjured:22460, 'Slightly injured':26336, Hospitalised:7970, Killed:1199},
+    'Night without street lighting': {Uninjured:11015, 'Slightly injured':13267, Hospitalised:9603, Killed:3043},
+    'Dusk or dawn': {Uninjured:9628, 'Slightly injured':9881, Hospitalised:5027, Killed:951},
+    'Night with street lighting off': {Uninjured:1252, 'Slightly injured':1493, Hospitalised:737, Killed:209},
+  };
+  const lightingLabels = Object.keys(lightingRaw);
+  new Chart(document.getElementById('lightingChart').getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels: lightingLabels,
+      datasets: SEV_LABELS.map((sev,i) => ({ label: sev, data: lightingLabels.map(l => lightingRaw[l][sev]), backgroundColor: SEV_COLORS[i] }))
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom', labels: { boxWidth: 10, padding: 12, font: { size: 11 } } },
+        tooltip: { ...tooltipBase, callbacks: { label: ctx => ' ' + ctx.dataset.label + ': ' + fmt(ctx.parsed.x) } }
+      },
+      scales: {
+        x: { stacked: true, grid: { color: 'rgba(255,255,255,0.06)' }, ticks: { callback: v => fmt(v) } },
+        y: { stacked: true, grid: { display: false }, ticks: { font: { size: 10.5 } } }
+      }
+    }
+  });
+
+  const atmoRaw = {
+    'Normal': {Uninjured:121434, 'Slightly injured':123423, Hospitalised:54448, Killed:9953},
+    'Light rain': {Uninjured:16204, 'Slightly injured':18619, Hospitalised:6156, Killed:1203},
+    'Overcast weather': {Uninjured:5979, 'Slightly injured':6386, Hospitalised:2503, Killed:565},
+    'Heavy rain': {Uninjured:3392, 'Slightly injured':3591, Hospitalised:1583, Killed:325},
+    'Glare': {Uninjured:3138, 'Slightly injured':2084, Hospitalised:1837, Killed:307},
+    'Fog - Smoke': {Uninjured:909, 'Slightly injured':960, Hospitalised:733, Killed:232},
+    'Snow - hail': {Uninjured:450, 'Slightly injured':498, Hospitalised:256, Killed:50},
+    'Strong wind - storm': {Uninjured:331, 'Slightly injured':323, Hospitalised:284, Killed:60},
+  };
+  const atmoLabels = Object.keys(atmoRaw);
+  new Chart(document.getElementById('atmosphericChart').getContext('2d'), {
+    type: 'bar',
+    data: {
+      labels: atmoLabels,
+      datasets: SEV_LABELS.map((sev,i) => ({ label: sev, data: atmoLabels.map(l => atmoRaw[l][sev]), backgroundColor: SEV_COLORS[i] }))
+    },
+    options: {
+      indexAxis: 'y', responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'bottom', labels: { boxWidth: 10, padding: 12, font: { size: 11 } } },
+        tooltip: { ...tooltipBase, callbacks: { label: ctx => ' ' + ctx.dataset.label + ': ' + fmt(ctx.parsed.x) } }
+      },
+      scales: {
+        x: { stacked: true, grid: { color: 'rgba(255,255,255,0.06)' }, ticks: { callback: v => fmt(v) } },
+        y: { stacked: true, grid: { display: false }, ticks: { font: { size: 10.5 } } }
+      }
+    }
+  });
+}
+
+// Init first visible tab
+tabInitialized.executive = true;
+initExecutive();
+</script>
+</body>
+</html>
