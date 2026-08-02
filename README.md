@@ -320,7 +320,7 @@ Potential future enhancements include:
 
 ## Live Dashboard
 
-[![View Dashboard](https://img.shields.io/badge/View-Live%20Dashboard-F2B705)](https://code-with-shahin.github.io/France_Road_Traffic_Accident_Analysis/accident_analysis_summary.html)
+[![View Dashboard](https://img.shields.io/badge/View-Live%20Dashboard-F2B705)](https://code-with-shahin.github.io/France_Road_Traffic_Accident_Analysis/accident_analysis_dashboard.html)
 
 ---
 
